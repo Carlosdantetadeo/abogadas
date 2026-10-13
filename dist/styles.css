@@ -1374,3 +1374,25 @@ body[data-page='inicio'] .voices-section .section-heading { border: 0; padding-t
   .unified-banner .institutional-motto { font-size: 27px; margin-bottom: 18px; }
   .unified-banner .hero-editorial-routes { margin-top: 0; }
 }
+
+/* Directorio: mostrar las fotografías completas, sin acercamiento ni recorte. */
+.member-photo { aspect-ratio: 4 / 5; height: auto; min-height: 0; background: var(--surface); }
+.member-photo > img { object-fit: contain; object-position: center; transform: none; }
+
+/* Banner principal: mantener la pieza completa en escritorio y encuadrar al equipo en móvil. */
+.home-main-banner { position: relative; overflow: hidden; background: var(--cream); border-bottom: 1px solid var(--line); }
+.home-main-banner-image { display: block; width: 100%; height: auto; }
+.home-main-banner-image-cta { position: absolute; left: 69.6%; top: 73.5%; width: 18.8%; height: 9%; border-radius: 12px; }
+.home-main-banner-image-cta:focus-visible { outline: 3px solid var(--plum); outline-offset: 3px; }
+.home-banner-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.home-main-banner-mobile { display: none; }
+@media (max-width: 760px) {
+  .home-main-banner-image { width: 100%; height: min(74vw, 300px); min-height: 230px; object-fit: cover; object-position: left center; }
+  .home-main-banner-image-cta { display: none; }
+  .home-main-banner-mobile { display: block; padding: 28px 20px 34px; text-align: center; }
+  .home-main-banner-mobile h2 { margin-bottom: 12px; color: var(--plum); font-size: clamp(32px, 8vw, 42px); }
+  .home-main-banner-mobile > p { margin-bottom: 20px; color: var(--muted); font: italic 22px/1.3 var(--serif); }
+  .home-main-banner-mobile .button-group { justify-content: center; gap: 12px; }
+}
+.profile-photo { aspect-ratio: 4 / 5; height: auto; min-height: 0; background: var(--surface); }
+.profile-photo img { width: 100%; height: 100%; object-fit: contain; object-position: center; transform: none; }

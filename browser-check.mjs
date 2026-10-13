@@ -60,6 +60,7 @@ try {
   await cdp('Network.setBlockedURLs', { urls: ['https://fonts.googleapis.com/*', 'https://fonts.gstatic.com/*'] });
   mkdirSync('qa', { recursive: true });
   const members = JSON.parse(readFileSync('members.json', 'utf8'));
+  const media = JSON.parse(readFileSync('media.json', 'utf8'));
   const pages = ['index.html', 'sociedad.html', 'programas.html', 'impacto.html', 'unete.html', 'videos.html', 'contacto.html', 'yo-gerencio.html', 'comunidad-experta.html', 'tribuna-femenina.html', 'actualidad.html', 'ecosistema-profesional.html', 'membresia-de-lanzamiento.html', 'derecho-con-proposito.html', 'directorio.html', 'comunidad.html', ...members.map(member => `perfil-${member.id}.html`)];
   for (const page of pages) {
     await cdp('Page.navigate', { url: pathToFileURL(resolve('dist', page)).href });
@@ -83,7 +84,7 @@ try {
         writeFileSync(`qa/inicio-${width}.png`, Buffer.from(data, 'base64'));
       }
       if (page === 'sociedad.html') {
-        assert(await evaluate(`document.querySelectorAll('.full-team .team-photo img').length === 8`), 'Eight member photographs');
+        assert(await evaluate(`document.querySelectorAll('.full-team .team-photo img').length === ${members.length}`), 'Current team photographs');
         if (width === 1440) {
           await evaluate(`document.querySelector('#equipo').scrollIntoView({ behavior: 'instant' })`);
           await pause(150);
@@ -93,11 +94,12 @@ try {
         }
       }
       if (page === 'videos.html' && [1440, 375].includes(width)) {
-        assert(await evaluate(`document.querySelectorAll('[data-video]').length === 7 && !document.querySelector('#video-player').getAttribute('src')`), 'Seven videos without initial download');
+        assert(await evaluate(`document.querySelectorAll('[data-video]').length === ${media.length} && !document.querySelector('#video-player').getAttribute('src')`), 'Video cards without initial download');
         const { data } = await cdp('Page.captureScreenshot', { format: 'png' });
         writeFileSync(`qa/videos-${width}.png`, Buffer.from(data, 'base64'));
       }
       if (page === 'directorio.html' && [1440, 375].includes(width)) {
+        assert(await evaluate(`getComputedStyle(document.querySelector('.member-photo > img')).objectFit === 'contain'`), 'Directory portraits show their full frame');
         const { data } = await cdp('Page.captureScreenshot', { format: 'png' });
         writeFileSync(`qa/directorio-${width}.png`, Buffer.from(data, 'base64'));
       }
@@ -142,7 +144,6 @@ try {
   await pause(650);
   assert(await evaluate(`document.querySelector('.carousel-track').scrollLeft > ${carouselBefore} && [...document.querySelectorAll('.carousel-track .video-card')].every(card => Math.abs(card.getBoundingClientRect().top - document.querySelector('.carousel-track .video-card').getBoundingClientRect().top) < 2)`), 'Videos scroll in a single horizontal row');
   console.log('Video carousel advances horizontally and stays in one row: OK');
-  const media = JSON.parse(readFileSync('media.json', 'utf8'));
   for (const item of media) {
     const point = await evaluate(`(() => {
       const link = document.querySelector('[data-video="${item.src}"]');
