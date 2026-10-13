@@ -1,0 +1,17 @@
+{
+  "name": "sociedad-de-abogadas-del-peru",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs && node prepare-next.mjs && next build",
+    "dev": "node build.mjs && node prepare-next.mjs && next dev",
+    "start": "next start",
+    "check": "node --check build.mjs && node --check features.mjs && node --check dist/app.js && node --check newsletter.mjs && node --check admission.mjs && node --check serve.mjs"
+  },
+  "dependencies": {
+    "next": "^16.1.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  }
+}

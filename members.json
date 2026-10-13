@@ -1,0 +1,242 @@
+[
+  {
+    "id": "sandra-sanchez",
+    "name": "Sandra Yudith Sánchez Tisnado",
+    "role": "Presidenta",
+    "bio": "Abogada, magíster en Gestión Pública y conciliadora.",
+    "areas": [
+      "conciliacion"
+    ],
+    "photo": {
+      "src": "assets/equipo-01.jpg",
+      "width": 1017,
+      "height": 1319,
+      "focus": "66% 48%"
+    },
+    "city": null,
+    "region": null,
+    "phone": null,
+    "whatsapp": null,
+    "email": null,
+    "linkedin": null,
+    "college": null,
+    "collegeNumber": null,
+    "languages": [],
+    "verification": {
+      "identity": false,
+      "collegiation": false,
+      "enabled": false,
+      "membership": false,
+      "reviewedAt": null
+    }
+  },
+  {
+    "id": "fiorella-arqueros",
+    "name": "Fiorella Aracely Arqueros Cruz",
+    "role": "Vicepresidenta",
+    "bio": "Abogada integrante del equipo de la Sociedad de Abogadas del Perú.",
+    "areas": [],
+    "photo": {
+      "src": "assets/equipo-02.jpg",
+      "width": 1071,
+      "height": 1241,
+      "focus": "52% 38%"
+    },
+    "city": null,
+    "region": null,
+    "phone": null,
+    "whatsapp": null,
+    "email": null,
+    "linkedin": null,
+    "college": null,
+    "collegeNumber": null,
+    "languages": [],
+    "verification": {
+      "identity": false,
+      "collegiation": false,
+      "enabled": false,
+      "membership": false,
+      "reviewedAt": null
+    }
+  },
+  {
+    "id": "gloria-astolingon",
+    "name": "Gloria Katherine Astolingon Goycochea",
+    "role": "Secretaria general",
+    "bio": "Abogada integrante del equipo de la Sociedad de Abogadas del Perú.",
+    "areas": [],
+    "photo": {
+      "src": "assets/equipo-03.jpg",
+      "width": 927,
+      "height": 1312,
+      "focus": "56% 42%"
+    },
+    "city": null,
+    "region": null,
+    "phone": null,
+    "whatsapp": null,
+    "email": null,
+    "linkedin": null,
+    "college": null,
+    "collegeNumber": null,
+    "languages": [],
+    "verification": {
+      "identity": false,
+      "collegiation": false,
+      "enabled": false,
+      "membership": false,
+      "reviewedAt": null
+    }
+  },
+  {
+    "id": "lady-olivos",
+    "name": "Lady Pamela Olivos Rujel",
+    "role": "Tesorera",
+    "bio": "Abogada.",
+    "areas": [],
+    "photo": {
+      "src": "assets/equipo-04.jpg",
+      "width": 1012,
+      "height": 1174,
+      "focus": "48% 33%"
+    },
+    "city": null,
+    "region": null,
+    "phone": null,
+    "whatsapp": null,
+    "email": null,
+    "linkedin": null,
+    "college": null,
+    "collegeNumber": null,
+    "languages": [],
+    "verification": {
+      "identity": false,
+      "collegiation": false,
+      "enabled": false,
+      "membership": false,
+      "reviewedAt": null
+    }
+  },
+  {
+    "id": "wendy-pizan",
+    "name": "Wendy Estefany Pizan Ballena",
+    "role": "Fiscal",
+    "bio": "Abogada integrante del equipo de la Sociedad de Abogadas del Perú.",
+    "areas": [],
+    "photo": {
+      "src": "assets/equipo-05.jpg",
+      "width": 1097,
+      "height": 1132,
+      "focus": "50% 36%"
+    },
+    "city": null,
+    "region": null,
+    "phone": null,
+    "whatsapp": null,
+    "email": null,
+    "linkedin": null,
+    "college": null,
+    "collegeNumber": null,
+    "languages": [],
+    "verification": {
+      "identity": false,
+      "collegiation": false,
+      "enabled": false,
+      "membership": false,
+      "reviewedAt": null
+    }
+  },
+  {
+    "id": "alexandra-gomez",
+    "name": "Alexandra Gómez Rodríguez",
+    "role": "Secretaria de liderazgo",
+    "bio": "Litigante en materia de familia y laboral.",
+    "areas": [
+      "familia",
+      "laboral"
+    ],
+    "photo": {
+      "src": "assets/equipo-06.jpg",
+      "width": 921,
+      "height": 1300,
+      "focus": "57% 38%"
+    },
+    "city": null,
+    "region": null,
+    "phone": null,
+    "whatsapp": null,
+    "email": null,
+    "linkedin": null,
+    "college": null,
+    "collegeNumber": null,
+    "languages": [],
+    "verification": {
+      "identity": false,
+      "collegiation": false,
+      "enabled": false,
+      "membership": false,
+      "reviewedAt": null
+    }
+  },
+  {
+    "id": "merly-garcia",
+    "name": "Merly García Zárate",
+    "role": "Secretaria de capacitación",
+    "bio": "Abogada.",
+    "areas": [],
+    "photo": {
+      "src": "assets/equipo-07.jpg",
+      "width": 968,
+      "height": 1296,
+      "focus": "50% 43%"
+    },
+    "city": null,
+    "region": null,
+    "phone": null,
+    "whatsapp": null,
+    "email": null,
+    "linkedin": null,
+    "college": null,
+    "collegeNumber": null,
+    "languages": [],
+    "verification": {
+      "identity": false,
+      "collegiation": false,
+      "enabled": false,
+      "membership": false,
+      "reviewedAt": null
+    }
+  },
+  {
+    "id": "vanessa-robles",
+    "name": "Vanessa Robles Ríos",
+    "role": "Secretaria de proyección",
+    "bio": "Abogada especialista en Derecho Administrativo y Gestión Pública.",
+    "areas": [
+      "administrativo",
+      "gestion-publica"
+    ],
+    "photo": {
+      "src": "assets/equipo-08.jpg",
+      "width": 1030,
+      "height": 1318,
+      "focus": "60% 10%"
+    },
+    "city": null,
+    "region": null,
+    "phone": null,
+    "whatsapp": null,
+    "email": null,
+    "linkedin": null,
+    "college": null,
+    "collegeNumber": null,
+    "languages": [],
+    "verification": {
+      "identity": false,
+      "collegiation": false,
+      "enabled": false,
+      "membership": false,
+      "reviewedAt": null
+    }
+  }
+]

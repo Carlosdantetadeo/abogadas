@@ -1,0 +1,7 @@
+node_modules
+qa
+sociedad-abogadas-web.zip
+.data
+.env*
+.git
+.openai

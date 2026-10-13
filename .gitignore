@@ -1,0 +1,16 @@
+qa/
+node_modules/
+.next/
+.vercel/
+.openai/
+.sites-runtime/
+*.tar.gz
+*.zip
+.data/
+.env*
+public/assets/
+public/app.js
+public/styles.css
+
+.vercel
+.env*

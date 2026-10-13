@@ -1,0 +1,42 @@
+import { spawn } from 'node:child_process';
+import { mkdtemp, readFile, unlink, rmdir } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { resolve } from 'node:path';
+import assert from 'node:assert/strict';
+const folder = await mkdtemp(resolve(tmpdir(), 'abogadas-admission-'));
+const file = resolve(folder, 'applications.json');
+const server = spawn(process.execPath, ['serve.mjs'], { env: { ...process.env, SAPP_PREVIEW_PORT: '4181', SAPP_APPLICATIONS_FILE: file }, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
+let logs = '';
+server.stdout.on('data', chunk => { logs += chunk.toString(); });
+server.stderr.on('data', () => {});
+const endpoint = 'http://127.0.0.1:4181/api/applications';
+const data = { name: 'Prueba de solicitud', email: 'qa@example.test', phone: '+51 999 999 999', location: 'Lima', college: 'Colegio de prueba', collegeNumber: 'TEST-1', area: 'civil', motivation: 'Solo prueba', consent: true };
+const post = (body, origin = 'http://127.0.0.1:4181') => fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json', Origin: origin }, body: JSON.stringify(body) });
+try {
+  for (let i = 0; i < 80 && !logs.includes('Local:'); i++) await new Promise(r => setTimeout(r, 100));
+  assert.ok(logs.includes('Local:'));
+  assert.equal((await post(null)).status, 400);
+  assert.equal((await post({ ...data, name: '' })).status, 400);
+  assert.equal((await post({ ...data, email: 'invalid' })).status, 400);
+  assert.equal((await post({ ...data, phone: '-------' })).status, 400);
+  assert.equal((await post({ ...data, area: 'fake' })).status, 400);
+  assert.equal((await post({ ...data, consent: false })).status, 400);
+  assert.equal((await post(data, 'https://example.test')).status, 403);
+  assert.equal((await post({ ...data, motivation: 'a'.repeat(1300) })).status, 400);
+  const responses = await Promise.all([post(data), post(data), post({ ...data, email: 'second@example.test' })]);
+  assert.ok(responses.every(r => r.status === 200));
+  const records = JSON.parse(await readFile(file, 'utf8'));
+  assert.equal(records.length, 2);
+  assert.ok(records.every(r => r.status === 'pending' && r.consentVersion === 'admission-v1' && r.id && r.createdAt));
+  assert.equal((await fetch(endpoint)).status, 405);
+  assert.equal((await fetch('http://127.0.0.1:4181/.data/applications.json')).status, 404);
+  const noJS = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams({ ...data, email: 'native@example.test', consent: 'on' }) });
+  assert.equal(noJS.status, 200);
+  assert.match(await noJS.text(), /Solicitud registrada/);
+  console.log('Admission API: validation, consent, private persistence, concurrent duplicates and no-JS feedback OK.');
+} finally {
+  server.kill();
+  await unlink(file).catch(() => {});
+  await unlink(file + '.tmp').catch(() => {});
+  await rmdir(folder).catch(() => {});
+}
