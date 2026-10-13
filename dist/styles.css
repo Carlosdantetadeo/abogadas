@@ -1413,3 +1413,25 @@ body[data-page='inicio'] .voices-section .section-heading { border: 0; padding-t
 }
 .profile-photo { aspect-ratio: 4 / 5; height: auto; min-height: 0; background: var(--surface); }
 .profile-photo img { width: 100%; height: 100%; object-fit: contain; object-position: center; transform: none; }
+
+/* Contacto institucional visible en todas las páginas, incluido móvil. */
+.institution-contact { background: #f0e8ed; border-bottom: 1px solid var(--line); }
+.contact-details-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 24px; padding-block: 14px; }
+.contact-details-label { margin: 0 0 3px; color: var(--plum); font-size: 11px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
+.contact-details-address address { max-width: 760px; font: normal 14px/1.6 var(--sans); color: var(--ink); }
+.contact-details-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; }
+.contact-details-actions a { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; color: var(--plum); font-size: 14px; font-weight: 650; }
+.contact-details-actions a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.institution-phone { white-space: nowrap; }
+.institution-whatsapp { padding-inline: 14px; border: 1px solid var(--plum); border-radius: 3px; }
+.footer-contact .contact-details-inner { border-top: 1px solid var(--line); padding-block: 24px; }
+@media (max-width: 1023px) {
+  .contact-details-inner { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .contact-details-address address { max-width: none; }
+}
+@media (max-width: 700px) {
+  .contact-details-address address { font-size: 13px; }
+  .contact-details-actions { justify-content: space-between; gap: 8px 12px; }
+  .contact-details-actions a { font-size: 13px; }
+  .institution-whatsapp { padding-inline: 10px; }
+}
