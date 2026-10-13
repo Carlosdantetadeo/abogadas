@@ -179,35 +179,6 @@
     }
   },
   {
-    "id": "merly-garcia",
-    "name": "Merly García Zárate",
-    "role": "Secretaria de capacitación",
-    "bio": "Abogada.",
-    "areas": [],
-    "photo": {
-      "src": "assets/equipo-07.jpg",
-      "width": 968,
-      "height": 1296,
-      "focus": "50% 43%"
-    },
-    "city": null,
-    "region": null,
-    "phone": null,
-    "whatsapp": null,
-    "email": null,
-    "linkedin": null,
-    "college": null,
-    "collegeNumber": null,
-    "languages": [],
-    "verification": {
-      "identity": false,
-      "collegiation": false,
-      "enabled": false,
-      "membership": false,
-      "reviewedAt": null
-    }
-  },
-  {
     "id": "vanessa-robles",
     "name": "Vanessa Robles Ríos",
     "role": "Secretaria de proyección",
