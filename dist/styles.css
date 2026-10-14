@@ -1459,3 +1459,23 @@ body[data-page='inicio'] .voices-section .section-heading { border: 0; padding-t
   .contact-details-actions a { font-size: 13px; }
   .contact-details-actions .institution-whatsapp { padding-inline: 10px; }
 }
+
+/* En móvil, las fichas se recorren en un carrusel manual. */
+.member-carousel { min-width: 0; }
+.member-carousel-controls, .member-carousel-hint { display: none; }
+.member-carousel-controls > p { margin: 0; font-size: 14px; font-weight: 600; color: var(--plum); }
+.member-carousel-buttons { display: flex; gap: 8px; }
+.member-carousel-buttons button { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 3px; background: #fff; color: var(--plum); font-size: 22px; }
+.member-carousel-buttons button:hover:not(:disabled) { border-color: var(--plum); background: var(--surface); }
+.member-carousel-buttons button:disabled { opacity: .4; cursor: default; }
+.member-carousel > .member-carousel-track[hidden] { display: none; }
+@media (max-width: 700px) {
+  .js .member-carousel-controls:not([hidden]) { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+  .member-carousel-hint:not([hidden]) { display: block; margin: 0 0 16px; color: var(--muted); font-size: 13px; }
+  .member-carousel .member-carousel-track { display: flex; gap: 16px; width: 100%; min-width: 0; overflow-x: auto; overflow-y: hidden; padding-bottom: 14px; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: var(--gold) var(--surface); }
+  .member-carousel .member-carousel-track > article { flex: 0 0 calc(100% - 24px); min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; }
+  .member-carousel .member-carousel-track .team-photo, .member-carousel .member-carousel-track .member-photo { height: 240px; }
+  .member-carousel-track .team-card .small-label { min-height: 3.1em; }
+  .member-carousel-track .team-card h3 { min-height: 2.5em; }
+  .member-carousel-track .member-card-body .member-contacts { margin-top: auto; }
+}

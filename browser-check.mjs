@@ -105,6 +105,47 @@ try {
       }
     }
   }
+  for (const page of ['index.html', 'sociedad.html', 'directorio.html']) {
+    await cdp('Emulation.setDeviceMetricsOverride', { width: 375, height: 1000, deviceScaleFactor: 1, mobile: true });
+    await cdp('Page.navigate', { url: pathToFileURL(resolve('dist', page)).href });
+    await pause(400);
+    await evaluate(`document.querySelector('[data-member-carousel]').scrollIntoView({ block: 'start', behavior: 'instant' })`);
+    assert(await evaluate(`(() => { const t = document.querySelector('.member-carousel-track'); return getComputedStyle(t).display === 'flex' && t.scrollWidth > t.clientWidth && document.querySelector('[data-member-status]').textContent.includes('1 de ${members.length}') && document.querySelector('[data-member-prev]').disabled && [...t.children].every(c => Math.abs(c.getBoundingClientRect().top - t.firstElementChild.getBoundingClientRect().top) < 2); })()`), 'Mobile members form one horizontal carousel');
+    await evaluate(`document.querySelector('[data-member-next]').click()`);
+    await pause(650);
+    assert(await evaluate(`document.querySelector('.member-carousel-track').scrollLeft > 0 && document.querySelector('[data-member-status]').textContent.includes('2 de ${members.length}') && !document.querySelector('[data-member-prev]').disabled`), 'Next member updates position');
+    await evaluate(`document.querySelector('[data-member-prev]').click()`);
+    await pause(650);
+    assert(await evaluate(`document.querySelector('[data-member-status]').textContent.includes('1 de ${members.length}') && document.querySelector('[data-member-prev]').disabled`), 'Previous returns to the first member');
+    await evaluate(`document.querySelector('.member-carousel-track').focus()`);
+    await cdp('Input.dispatchKeyEvent', { type: 'keyDown', key: 'End', code: 'End' });
+    await pause(650);
+    assert(await evaluate(`document.querySelector('[data-member-status]').textContent.includes('${members.length} de ${members.length}') && document.querySelector('[data-member-next]').disabled`), 'Keyboard reaches the final member');
+    await cdp('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Home', code: 'Home' });
+    await pause(650);
+    assert(await evaluate(`document.querySelector('.member-carousel-track').scrollLeft < 1 && document.querySelector('[data-member-status]').textContent.includes('1 de ${members.length}')`), 'Home shows the complete first member');
+    if (page === 'directorio.html') {
+      await evaluate(`document.querySelector('#member-query').value = 'Gloria'; document.querySelector('#member-query').dispatchEvent(new Event('input', { bubbles: true }))`);
+      await pause(100);
+      assert(await evaluate(`document.querySelector('[data-member-status]').textContent.includes('1 de 1') && document.querySelector('[data-member-next]').disabled && document.querySelectorAll('[data-member]:not([hidden])').length === 1`), 'Filtered carousel shows one matching member');
+      await evaluate(`document.querySelector('#member-query').value = 'zzzzzz'; document.querySelector('#member-query').dispatchEvent(new Event('input', { bubbles: true }))`);
+      await pause(100);
+      assert(await evaluate(`document.querySelector('.member-carousel-track').hidden && document.querySelector('.member-carousel-controls').hidden && !document.querySelector('#directory-empty').hidden`), 'Empty result hides carousel controls');
+      await evaluate(`document.querySelector('#directory-search').reset()`);
+      await pause(150);
+      assert(await evaluate(`!document.querySelector('.member-carousel-track').hidden && document.querySelector('[data-member-status]').textContent.includes('1 de ${members.length}')`), 'Reset restores the complete carousel');
+    }
+    await evaluate(`document.querySelector('[data-member-carousel]').scrollIntoView({ block: 'start', behavior: 'instant' })`);
+    const { data } = await cdp('Page.captureScreenshot', { format: 'png' });
+    writeFileSync(`qa/carrusel-${page.replace('.html', '')}-375.png`, Buffer.from(data, 'base64'));
+    for (const width of [1440, 768]) {
+      await cdp('Emulation.setDeviceMetricsOverride', { width, height: 1000, deviceScaleFactor: 1, mobile: false });
+      await pause(150);
+      assert(await evaluate(`getComputedStyle(document.querySelector('.member-carousel-track')).display === 'grid' && getComputedStyle(document.querySelector('.member-carousel-track')).gridTemplateColumns.split(' ').length === ${width === 1440 ? 3 : 2} && getComputedStyle(document.querySelector('.member-carousel-controls')).display === 'none'`), 'Desktop and tablet retain the static grid');
+    }
+    console.log(`${page}: mobile member carousel, navigation, keyboard and desktop grid OK`);
+  }
+  await cdp('Emulation.setDeviceMetricsOverride', { width: 320, height: 1000, deviceScaleFactor: 1, mobile: true });
   await cdp('Page.navigate', { url: pathToFileURL(resolve('dist/index.html')).href });
   await pause(350);
   assert(await evaluate(`document.querySelector('#main-nav').getBoundingClientRect().height === 0`), 'Mobile nav should start closed');

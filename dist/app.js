@@ -86,6 +86,76 @@
   player?.addEventListener('error', () => {
     if (dialog?.open) document.querySelector('#video-status').textContent = 'No se pudo reproducir el mensaje. Puedes abrir el video original con el enlace inferior.';
   });
+  document.querySelectorAll('[data-member-carousel]').forEach(carousel => {
+    const track = carousel.querySelector('.member-carousel-track');
+    const previous = carousel.querySelector('[data-member-prev]');
+    const next = carousel.querySelector('[data-member-next]');
+    const status = carousel.querySelector('[data-member-status]');
+    const controls = carousel.querySelector('.member-carousel-controls');
+    const hint = carousel.querySelector('.member-carousel-hint');
+    const compact = matchMedia('(max-width: 700px)');
+    const cards = [...track.children];
+    const visibleCards = () => cards.filter(card => !card.hidden);
+    const currentIndex = visible => {
+      const left = track.getBoundingClientRect().left;
+      let current = 0;
+      visible.forEach((card, index) => {
+        if (Math.abs(card.getBoundingClientRect().left - left) < Math.abs(visible[current].getBoundingClientRect().left - left)) current = index;
+      });
+      return current;
+    };
+    const update = () => {
+      const visible = visibleCards();
+      const current = visible.length ? currentIndex(visible) : 0;
+      const message = visible.length ? `Integrante ${current + 1} de ${visible.length}` : 'Sin integrantes para mostrar';
+      if (status.textContent !== message) status.textContent = message;
+      previous.disabled = current === 0;
+      next.disabled = !visible.length || current === visible.length - 1;
+      controls.hidden = !visible.length;
+      hint.hidden = visible.length <= 1;
+      if (track.hidden !== !visible.length) track.hidden = !visible.length;
+    };
+    const goTo = (index, immediate = false) => {
+      if (!compact.matches) return;
+      const visible = visibleCards();
+      const card = visible[Math.max(0, Math.min(index, visible.length - 1))];
+      if (!card) return;
+      track.scrollTo({
+        left: track.scrollLeft + card.getBoundingClientRect().left - track.getBoundingClientRect().left,
+        behavior: immediate || matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      });
+    };
+    previous.addEventListener('click', () => goTo(currentIndex(visibleCards()) - 1));
+    next.addEventListener('click', () => goTo(currentIndex(visibleCards()) + 1));
+    track.addEventListener('scroll', update, { passive: true });
+    track.addEventListener('keydown', event => {
+      if (!compact.matches || event.target !== track) return;
+      const visible = visibleCards();
+      const current = visible.length ? currentIndex(visible) : 0;
+      const destination = { ArrowLeft: current - 1, ArrowRight: current + 1, Home: 0, End: visible.length - 1 }[event.key];
+      if (destination === undefined) return;
+      event.preventDefault(); goTo(destination, event.key === 'Home' || event.key === 'End');
+    });
+    const setLayout = () => {
+      if (compact.matches) {
+        track.setAttribute('tabindex', '0');
+        carousel.setAttribute('aria-roledescription', 'carrusel');
+      } else {
+        track.removeAttribute('tabindex');
+        carousel.removeAttribute('aria-roledescription');
+        track.scrollTo({ left: 0, behavior: 'instant' });
+      }
+      update();
+    };
+    compact.addEventListener('change', setLayout);
+    new ResizeObserver(update).observe(track);
+    const filters = new MutationObserver(() => {
+      track.scrollTo({ left: 0, behavior: 'instant' });
+      update();
+    });
+    cards.forEach(card => filters.observe(card, { attributes: true, attributeFilter: ['hidden'] }));
+    setLayout();
+  });
   document.querySelectorAll('[data-carousel]').forEach(carousel => {
     const track = carousel.querySelector('.carousel-track');
     const cards = [...track.querySelectorAll('.video-card')];
