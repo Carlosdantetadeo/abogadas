@@ -3,7 +3,7 @@
     "id": "sandra-sanchez",
     "name": "Sandra Yudith Sánchez Tisnado",
     "role": "Presidenta",
-    "bio": "Abogada, magíster en Gestión Pública y conciliadora.",
+    "bio": "Abogada, magíster en Gestión Pública, conciliadora y con estudios en la Academia de la Magistratura.",
     "areas": [
       "conciliacion"
     ],
@@ -34,8 +34,9 @@
     "id": "fiorella-arqueros",
     "name": "Fiorella Aracely Arqueros Cruz",
     "role": "Vicepresidenta",
-    "bio": "Abogada integrante del equipo de la Sociedad de Abogadas del Perú.",
-    "areas": [],
+    "bio": "Abogada y empresaria, especializada en Derecho Civil, Inmobiliario y Minero, formalización de predios y formalización minera. Gerente general de Arqueros & Asociados y directora de CENCOAR.",
+    "summary": "Abogada y empresaria, especializada en Derecho Civil, Inmobiliario y Minero.",
+    "areas": ["civil", "inmobiliario", "minero"],
     "photo": {
       "src": "assets/equipo-02.jpg",
       "width": 1071,
@@ -93,7 +94,7 @@
     "id": "lady-olivos",
     "name": "Lady Pamela Olivos Rujel",
     "role": "Tesorera",
-    "bio": "Abogada.",
+    "bio": "Abogada y asistente administrativo en la Municipalidad Provincial de Ascope.",
     "areas": [],
     "photo": {
       "src": "assets/equipo-04.jpg",
@@ -122,8 +123,9 @@
     "id": "wendy-pizan",
     "name": "Wendy Estefany Pizan Ballena",
     "role": "Fiscal",
-    "bio": "Abogada integrante del equipo de la Sociedad de Abogadas del Perú.",
-    "areas": [],
+    "bio": "Abogada litigante, con estudios concluidos de Maestría en Derecho con mención en Derecho Civil Empresarial. Especializada en Derecho Civil, Gestión Pública y Saneamiento Físico-Legal de Predios.",
+    "summary": "Abogada litigante especializada en Derecho Civil, Gestión Pública y saneamiento físico-legal de predios.",
+    "areas": ["civil", "gestion-publica", "inmobiliario"],
     "photo": {
       "src": "assets/equipo-05.jpg",
       "width": 1097,
@@ -193,6 +195,68 @@
       "width": 1030,
       "height": 1318,
       "focus": "60% 10%"
+    },
+    "city": null,
+    "region": null,
+    "phone": null,
+    "whatsapp": null,
+    "email": null,
+    "linkedin": null,
+    "college": null,
+    "collegeNumber": null,
+    "languages": [],
+    "verification": {
+      "identity": false,
+      "collegiation": false,
+      "enabled": false,
+      "membership": false,
+      "reviewedAt": null
+    }
+  },
+  {
+    "id": "monica-alamo",
+    "name": "Mónica Graciela Alamo Augusto",
+    "role": "Secretaria de capacitación",
+    "bio": "Abogada y conciliadora extrajudicial, litigante en el estudio jurídico Los Alamos Abogados. Especializada en Derecho de Familia y Sucesiones, y en Derecho Civil Corporativo. Maestrante en Derecho de Familia en la Universidad de Rioja, España. Condecorada dos veces con el premio Emprendedor Joven 2025 del Congreso de la República.",
+    "summary": "Abogada, conciliadora extrajudicial y litigante, especializada en Familia, Sucesiones y Derecho Civil Corporativo.",
+    "areas": ["familia", "sucesiones", "civil", "societario", "conciliacion"],
+    "photo": {
+      "src": "assets/equipo-monica-alamo.jpg",
+      "width": 896,
+      "height": 1200,
+      "focus": "50% 50%",
+      "fit": "contain"
+    },
+    "city": null,
+    "region": null,
+    "phone": null,
+    "whatsapp": null,
+    "email": null,
+    "linkedin": null,
+    "college": null,
+    "collegeNumber": null,
+    "languages": [],
+    "verification": {
+      "identity": false,
+      "collegiation": false,
+      "enabled": false,
+      "membership": false,
+      "reviewedAt": null
+    }
+  },
+  {
+    "id": "liliana-cabrera",
+    "name": "Liliana Cabrera Reyes",
+    "role": "Secretaria de relaciones institucionales y convenios",
+    "bio": "Abogada especialista en Derecho de Familia y Derecho Civil, conciliadora extrajudicial y árbitro, con más de doce años de experiencia en la prevención y solución de conflictos. Egresada y titulada por la Universidad Nacional de Trujillo, donde actualmente cursa una maestría en Derecho Civil.",
+    "summary": "Abogada especialista en Derecho de Familia y Civil, conciliadora extrajudicial y árbitro.",
+    "areas": ["familia", "civil", "conciliacion", "arbitraje"],
+    "photo": {
+      "src": "assets/equipo-liliana-cabrera.jpg",
+      "width": 900,
+      "height": 1600,
+      "focus": "50% 50%",
+      "fit": "contain"
     },
     "city": null,
     "region": null,

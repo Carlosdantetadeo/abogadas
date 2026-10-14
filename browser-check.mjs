@@ -122,7 +122,7 @@ try {
   assert(await evaluate(`location.hash === '#comunidad-experta' && document.querySelector('#path-hint').textContent.startsWith('Comunidad Experta:')`), 'Program guidance updates and navigates');
   await cdp('Page.navigate', { url: pathToFileURL(resolve('dist/directorio.html')).href + '?area=familia' });
   await pause(350);
-  assert(await evaluate(`document.querySelectorAll('[data-member]:not([hidden])').length === 1 && document.querySelector('[data-member]:not([hidden])').dataset.name.includes('Alexandra')`), 'Directory category deep link');
+  assert(await evaluate(`document.querySelectorAll('[data-member]:not([hidden])').length === ${members.filter(member => member.areas.includes('familia')).length} && [...document.querySelectorAll('[data-member]:not([hidden])')].every(card => card.dataset.areas.split(' ').includes('familia'))`), 'Directory category deep link');
   await evaluate(`document.querySelector('#directory-search').reset()`);
   await pause(100);
   assert(await evaluate(`document.querySelectorAll('[data-member]:not([hidden])').length === ${members.length}`), 'Directory reset');
