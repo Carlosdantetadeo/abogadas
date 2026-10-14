@@ -1348,6 +1348,7 @@ body[data-page='inicio'] .voices-section .section-heading { border: 0; padding-t
 .team-card, .team-card:first-child { display: flex; flex-direction: column; padding: 20px; border: 1px solid var(--line); border-top: 2px solid var(--gold); border-radius: 5px; background: #fff; overflow: hidden; }
 .team-grid .team-photo, .full-team .team-photo, .home-team .team-photo { width: 100%; height: 300px; min-height: 0; aspect-ratio: auto; border-radius: 2px; overflow: hidden; background: var(--surface); }
 .team-photo img { width: 100%; height: 100%; object-fit: contain; object-position: center; transform: none; }
+.team-photo img[data-frame="black"], .member-photo > img[data-frame="black"], .profile-photo img[data-frame="black"] { width: auto; max-width: 100%; height: 100%; margin-inline: auto; border: 12px solid #000; padding: 8px; background: #dedbd4; box-shadow: inset 0 0 0 2px #aaa79f, inset 0 0 0 5px #f1f0ea; object-fit: contain; transform: none; }
 .team-card-copy, .home-team .team-card-copy { display: flex; flex-direction: column; padding: 20px 0 0; flex: 1; min-width: 0; }
 .team-card .small-label { min-height: 3.1em; margin-bottom: 12px; font: 600 11px/1.55 var(--sans); letter-spacing: .07em; color: var(--plum); }
 .team-card h3, .full-team .team-card h3, .home-team h3 { max-width: none; font-size: 25px; line-height: 1.25; min-height: 2.5em; margin-bottom: 16px; overflow-wrap: break-word; }
@@ -1478,4 +1479,5 @@ body[data-page='inicio'] .voices-section .section-heading { border: 0; padding-t
   .member-carousel-track .team-card .small-label { min-height: 3.1em; }
   .member-carousel-track .team-card h3 { min-height: 2.5em; }
   .member-carousel-track .member-card-body .member-contacts { margin-top: auto; }
+  .team-photo img[data-frame="black"], .member-photo > img[data-frame="black"], .profile-photo img[data-frame="black"] { border-width: 10px; padding: 6px; }
 }

@@ -37,7 +37,7 @@ export function createFeatures({ members, community, button, eyebrow, arrow, ico
   }
   const areas = member => member.areas.length ? member.areas.map(a => `<span class="area-tag">${esc(areaNames.get(a))}</span>`).join('') : '';
   const badge = member => isVerified(member) ? `<span class="member-badge verified">${icon('check')}Perfil verificado</span>` : '<span class="member-badge institutional">Ficha institucional</span>';
-  const profilePhoto = (member, centered = false) => member.photo ? `<img src="${esc(member.photo.src)}" alt="${esc(member.name)}" width="${member.photo.width}" height="${member.photo.height}" style="object-position:${centered ? '50% 50%' : esc(member.photo.focus || '50% 45%')}" loading="lazy">` : `<span class="profile-initials" aria-hidden="true">${esc(member.name.split(' ').map(n => n[0]).slice(0, 2).join(''))}</span>`;
+  const profilePhoto = (member, centered = false) => member.photo ? `<img src="${esc(member.photo.src)}" alt="${esc(member.name)}" width="${member.photo.width}" height="${member.photo.height}" data-frame="${member.photo.frame || 'embedded'}" style="object-position:${centered ? '50% 50%' : esc(member.photo.focus || '50% 45%')}" loading="lazy">` : `<span class="profile-initials" aria-hidden="true">${esc(member.name.split(' ').map(n => n[0]).slice(0, 2).join(''))}</span>`;
   const contacts = member => {
     const links = [];
     if (member.phone) links.push(`<a class="member-contact-link" href="tel:${phoneValue(member.phone)}">Teléfono: ${esc(member.phone)}</a>`);

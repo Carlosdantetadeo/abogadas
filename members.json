@@ -68,6 +68,7 @@
     "areas": [],
     "photo": {
       "src": "assets/equipo-03.jpg",
+      "frame": "black",
       "width": 900,
       "height": 1600,
       "focus": "50% 50%",
@@ -222,6 +223,7 @@
     "areas": ["familia", "sucesiones", "civil", "societario", "conciliacion"],
     "photo": {
       "src": "assets/equipo-monica-alamo.jpg",
+      "frame": "black",
       "width": 896,
       "height": 1200,
       "focus": "50% 50%",
@@ -253,6 +255,7 @@
     "areas": ["familia", "civil", "conciliacion", "arbitraje"],
     "photo": {
       "src": "assets/equipo-liliana-cabrera.jpg",
+      "frame": "black",
       "width": 900,
       "height": 1600,
       "focus": "50% 50%",
